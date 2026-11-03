@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080808">
+<title>HZ HAFIZ メ | Downloads</title>
+<style>
+:root{--y:#ffd21a;--bg:#080808;--panel:#151515;--muted:#aaa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#fff;font-family:Arial,"Noto Sans Bengali",sans-serif}
+.wrap{max-width:760px;margin:auto;padding:18px 14px 40px}
+.shell{border:2px solid var(--y);border-radius:26px;padding:22px 16px;background:linear-gradient(160deg,#111,#050505);box-shadow:0 0 24px #ffd21a22}
+header{text-align:center}
+.logo{width:126px;height:126px;border-radius:50%;border:4px solid var(--y);padding:4px;object-fit:cover;background:#222;box-shadow:0 0 20px #ffd21a55}
+h1{font-size:clamp(26px,6vw,38px);margin:14px 0 8px;letter-spacing:.5px}
+.verify{color:#39baff}.welcome{font-weight:bold;margin:8px 0 25px}
+h2{color:var(--y);font-size:20px;text-align:center;margin:0 0 18px}
+.items{display:grid;gap:12px}
+.item{display:flex;align-items:center;gap:12px;background:var(--y);color:#080808;text-decoration:none;padding:16px 17px;border-radius:18px;font-weight:900;min-height:68px;overflow-wrap:anywhere}
+.item .arrow{font-size:25px}.item .meta{display:block;font-size:12px;font-weight:600;opacity:.75;margin-top:4px}
+.empty{text-align:center;color:#bbb;border:1px dashed #555;border-radius:16px;padding:24px 12px}
+.admin{margin-top:22px;background:var(--panel);border:1px solid #3d3d3d;border-radius:18px;padding:16px}
+summary{cursor:pointer;color:var(--y);font-weight:900;font-size:17px}
+label{display:block;margin:13px 0 6px;color:#ddd;font-size:14px}
+input{width:100%;padding:12px;border:1px solid #555;border-radius:10px;background:#080808;color:#fff}
+button{margin-top:14px;background:var(--y);color:#080808;border:0;border-radius:11px;padding:13px 16px;font-weight:900;width:100%;font-size:15px}
+.small{font-size:12px;color:var(--muted);line-height:1.55;margin:12px 0 0}
+footer{text-align:center;color:#888;font-size:12px;margin-top:20px}
+</style></head>
+<body><main class="wrap"><section class="shell">
+<header>
+<img class="logo" id="logo" alt="HZ HAFIZ logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='%23151515'/%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' font-size='52' font-family='Arial' font-weight='bold' fill='%23ffd21a'%3EHZ%3C/text%3E%3C/svg%3E">
+<h1 id="brand">HZ HAFIZ メ <span class="verify">●</span></h1>
+<p class="welcome" id="welcome">WELCOME TO MY OFFICIAL DOWNLOAD PAGE</p>
+</header>
+<h2>MY DOWNLOADS</h2>
+<div class="items" id="items"><div class="empty" id="empty">এখনো কোনো ফাইল যোগ করা হয়নি। Admin Panel থেকে একটি বৈধ ফাইল যোগ করো।</div></div>
+<details class="admin">
+<summary>⚙ ADMIN PANEL — নিজের লোগো ও ফাইল যোগ করো</summary>
+<label for="logoFile">নিজের লোগো নির্বাচন</label><input id="logoFile" type="file" accept="image/*">
+<label for="brandName">ওয়েবসাইটের নাম</label><input id="brandName" value="HZ HAFIZ メ" maxlength="45">
+<label for="welcomeText">Welcome লেখা</label><input id="welcomeText" value="WELCOME TO MY OFFICIAL DOWNLOAD PAGE" maxlength="90">
+<label for="fileName">ফাইলের নাম</label><input id="fileName" placeholder="যেমন: My Game Guide PDF">
+<label for="filePick">বৈধ ফাইল নির্বাচন (PDF, ছবি, ZIP ইত্যাদি)</label><input id="filePick" type="file" accept=".pdf,.zip,.jpg,.jpeg,.png,.txt">
+<button id="add">＋ DOWNLOAD বাটন যোগ করো</button>
+<p class="small">গুরুত্বপূর্ণ: এটি একটি ব্রাউজার-ভিত্তিক নমুনা। যোগ করা ফাইল ও লোগো শুধু এই ডিভাইস/এই খোলা পেজে কাজ করবে; সবার জন্য অনলাইনে রাখতে হলে ওয়েব হোস্টিং ও নিরাপদ ফাইল-স্টোরেজ সংযোগ করতে হবে। অজানা APK বা ক্ষতিকর/চিট ফাইল আপলোড কোরো না।</p>
+</details>
+</section><footer>© HZ HAFIZ メ</footer></main>
+<script>
+const $=id=>document.getElementById(id);
+$('logoFile').addEventListener('change',e=>{const f=e.target.files[0];if(f){const r=new FileReader();r.onload=()=>{$('logo').src=r.result};r.readAsDataURL(f)}});
+$('brandName').addEventListener('input',e=>$('brand').textContent=e.target.value+' ●');
+$('welcomeText').addEventListener('input',e=>$('welcome').textContent=e.target.value);
+$('add').addEventListener('click',()=>{
+ const f=$('filePick').files[0], name=$('fileName').value.trim();
+ if(!f||!name){alert('ফাইল এবং ফাইলের নাম—দুটিই নির্বাচন/লিখো।');return}
+ const url=URL.createObjectURL(f), a=document.createElement('a');
+ a.className='item';a.href=url;a.download=f.name;
+ const arrow=document.createElement('span');arrow.className='arrow';arrow.textContent='⬇';
+ const text=document.createElement('span');text.textContent=name;
+ const meta=document.createElement('span');meta.className='meta';meta.textContent=(f.size/1024/1024).toFixed(2)+' MB · '+f.name;
+ text.appendChild(meta);a.append(arrow,text);
+ $('empty')?.remove();$('items').appendChild(a);
+ $('fileName').value='';$('filePick').value='';
+});
+</script></body></html>
